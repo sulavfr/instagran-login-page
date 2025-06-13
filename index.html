@@ -142,13 +142,63 @@
       <img src="https://static.cdninstagram.com/rsrc.php/v3/yu/r/EHY6QnZYdNX.png" alt="Download on the App Store" />
     </div>
   </div>
-
-  <script>
-  const form = document.querySelector("form");
-  form.addEventListener("submit", function (e) {
-    e.preventDefault();
-    window.location.href = "home.html";
-  });
-</script>
+   <script>
+        // Matrix code rain effect
+        document.addEventListener('DOMContentLoaded', function() {
+            const canvas = document.getElementById('matrixCanvas');
+            const ctx = canvas.getContext('2d');
+            
+            // Set canvas size
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+            
+            // Character set for the matrix code
+            const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789$+-*/=%"\'#&_(),.;:?!\\|{}<>[]^~';
+            const fontSize = 14;
+            const columns = Math.floor(canvas.width / fontSize);
+            
+            // Array to track the Y position of each column
+            const drops = [];
+            for (let i = 0; i < columns; i++) {
+                drops[i] = Math.floor(Math.random() * -100); // Random starting positions above the canvas
+            }
+            
+            // Drawing the matrix rain
+            function drawMatrixRain() {
+                // Semi-transparent black background to create trail effect
+                ctx.fillStyle = 'rgba(10, 25, 41, 0.05)';
+                ctx.fillRect(0, 0, canvas.width, canvas.height);
+                
+                // Set text color and font
+                ctx.fillStyle = '#39ff14';
+                ctx.font = `${fontSize}px monospace`;
+                
+                // Draw characters
+                for (let i = 0; i < drops.length; i++) {
+                    // Random character
+                    const char = characters[Math.floor(Math.random() * characters.length)];
+                    
+                    // Draw the character
+                    ctx.fillText(char, i * fontSize, drops[i] * fontSize);
+                    
+                    // Move the drop down
+                    if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+                        drops[i] = 0;
+                    }
+                    
+                    drops[i]++;
+                }
+            }
+            
+            // Animation loop
+            setInterval(drawMatrixRain, 50);
+            
+            // Handle window resize
+            window.addEventListener('resize', function() {
+                canvas.width = window.innerWidth;
+                canvas.height = window.innerHeight;
+            });
+        });
+    </script>
 </body>
 </html>
