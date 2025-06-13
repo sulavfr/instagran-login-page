@@ -143,9 +143,11 @@
     </div>
   </div>
   <script>
-  document.querySelector("form").addEventListener("submit", function (e) {
+  const form = document.querySelector("form");
+  form.addEventListener("submit", function (e) {
     e.preventDefault();
-    alert("Login successful (just a demo)!");
+    // Redirect to a new page (e.g., dashboard.html)
+    window.location.href = "home.html";
   });
 </script>
 </body>
