@@ -142,11 +142,12 @@
       <img src="https://static.cdninstagram.com/rsrc.php/v3/yu/r/EHY6QnZYdNX.png" alt="Download on the App Store" />
     </div>
   </div>
- <script>
+
+  <script>
   const form = document.querySelector("form");
   form.addEventListener("submit", function (e) {
-    e.preventDefault(); // Prevent form from reloading the page
-    alert("Login clicked! This is just a demo.");
+    e.preventDefault();
+    window.location.href = "home.html";
   });
 </script>
 </body>
